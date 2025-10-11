@@ -5,7 +5,7 @@ h1 {
     color: black;
 }
 
-h2, p {
+h2, p, ul {
     color: beige;
 }
 
@@ -20,7 +20,7 @@ a {
     color: #a4eeeb
 }
 
-section {
+main {
     background-color: #6f6f6f;
     margin: auto;
     width: 60%;
