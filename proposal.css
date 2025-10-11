@@ -2,7 +2,12 @@ h1 {
     font-weight: 1000;
     font-family: Fantasy;
     text-align: center;
-    color: black;
+    color: rgb(243, 238, 238);
+}
+
+body {
+    background-color: #292828;
+    margin: 20px;
 }
 
 h2, p, ul {
