@@ -2,15 +2,22 @@ header {
     text-align: center;
 }
 
-.background {
-    max-height: 100px;
-    background-image: url('../img/splash-md.jpg');
-    background-position: center;
-    background-size: cover;
+.intro {
+  text-align: center;
+  padding: 50px 50px;
 }
 
-.bgimg {
-    max-height: 100;
+.image-row {
+    display: flex;
+    overflow-x: auto;
+    padding: 16px;
+}
+
+.image-row img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    flex: 0 0 auto;
 }
 
 body {
@@ -27,6 +34,7 @@ section {
     margin-bottom: 1rem;
     border-radius: 8px;
 }
+
 h1, h2 {
     text-align: center;
     padding-bottom: 0.5rem;
