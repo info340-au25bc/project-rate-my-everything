@@ -12,3 +12,52 @@ header {
 .bgimg {
     max-height: 100;
 }
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+section {
+    background-color: #ccc;
+    max-width: 40rem;
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+h1, h2 {
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+label {
+    margin-bottom: 0.25rem;
+    margin-right: 1rem;
+}
+input, textarea {
+    font: inherit;
+    padding: 0.5rem;
+    border: 1px solid #919191;
+    border-radius: 4px;
+}
+input[type="submit"] {
+    background: #0088ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+input[type="submit"]:hover {
+    background: #0068b3;
+}
+ul {
+    padding-left: 1.5rem;
+}
