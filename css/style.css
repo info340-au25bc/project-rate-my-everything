@@ -1,0 +1,14 @@
+header {
+    text-align: center;
+}
+
+.background {
+    max-height: 100px;
+    background-image: url('../img/splash-md.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.bgimg {
+    max-height: 100;
+}
