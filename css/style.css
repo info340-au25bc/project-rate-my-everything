@@ -4,20 +4,22 @@ header {
 
 .intro {
   text-align: center;
-  padding: 50px 50px;
+  padding: 5vw 5vw;
 }
 
 .image-row {
     display: flex;
-    overflow-x: auto;
-    padding: 16px;
+    justify-content: center;
 }
 
 .image-row img {
-    width: 300px;
-    height: 200px;
+    width: 100%;
+    max-width: 33.333%;
+    height: auto;
+    max-height: 250px;
     object-fit: cover;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
+    transition: width 0.3s ease;
 }
 
 body {
@@ -28,8 +30,7 @@ body {
 }
 section {
     background-color: #ccc;
-    max-width: 40rem;
-    width: 100%;
+    width: 80%;
     padding: 2rem;
     margin-bottom: 1rem;
     border-radius: 8px;
