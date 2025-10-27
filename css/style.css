@@ -8,6 +8,15 @@ header {
     padding: 20px 10px 15px 10px;
 }
 
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: white;
+}
+
 header h1 {
     margin: 0;
     line-height: 1;
@@ -140,8 +149,10 @@ section {
     width: 80%;
     max-width: 700px;
     padding: 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     border-radius: 8px;
+    text-align: center;
 }
 
 h1, h2 {
@@ -169,7 +180,7 @@ input, textarea {
     align-self: center;
 }
 
-.button {
+.button, a.button {
     background: #0088ff;
     color: white;
     border: none;
@@ -177,6 +188,7 @@ input, textarea {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     text-decoration: none;
+    margin-bottom: 1rem;
 }
 
 .button:hover {
