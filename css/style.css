@@ -1,5 +1,22 @@
 header {
-    text-align: center;
+    background-color: rgb(41, 41, 41);
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px 15px 10px;
+}
+
+header h1 {
+    margin: 0;
+    line-height: 1;
+  }
+
+header img {
+    filter: invert(1);
+    width: 40px;
+    height: auto;
 }
 
 .intro {
@@ -31,6 +48,7 @@ body {
 section {
     background-color: #ccc;
     width: 80%;
+    max-width: 700px;
     padding: 2rem;
     margin-bottom: 1rem;
     border-radius: 8px;
