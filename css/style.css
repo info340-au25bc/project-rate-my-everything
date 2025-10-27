@@ -7,6 +7,10 @@ header {
   padding: 5vw 5vw;
 }
 
+.desc {
+    margin-top: 2rem;
+}
+
 .image-row {
     display: flex;
     justify-content: center;
@@ -20,6 +24,18 @@ header {
     object-fit: cover;
     flex: 1 1 auto;
     transition: width 0.3s ease;
+}
+
+.post-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    max-height: 300px;
+}
+
+div .card {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 body {
