@@ -1,5 +1,22 @@
 header {
-    text-align: center;
+    background-color: rgb(41, 41, 41);
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px 15px 10px;
+}
+
+header h1 {
+    margin: 0;
+    line-height: 1;
+  }
+
+header img {
+    filter: invert(1);
+    width: 40px;
+    height: auto;
 }
 
 .intro {
@@ -44,9 +61,11 @@ body {
     justify-content: center;
     flex-direction: column;
 }
+
 section {
     background-color: #ccc;
     width: 80%;
+    max-width: 700px;
     padding: 2rem;
     margin-bottom: 1rem;
     border-radius: 8px;
@@ -56,22 +75,26 @@ h1, h2 {
     text-align: center;
     padding-bottom: 0.5rem;
 }
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
+
 label {
     margin-bottom: 0.25rem;
     margin-right: 1rem;
 }
+
 input, textarea {
     font: inherit;
     padding: 0.5rem;
     border: 1px solid #919191;
     border-radius: 4px;
 }
+
 input[type="submit"] {
     background: #0088ff;
     color: white;
@@ -80,9 +103,18 @@ input[type="submit"] {
     padding: 0.5rem 1rem;
     border-radius: 4px;
 }
+
 input[type="submit"]:hover {
     background: #0068b3;
 }
+
 ul {
     padding-left: 1.5rem;
+}
+
+footer {
+    background-color: rgb(41, 41, 41);
+    color: white;
+    width: 100%;
+    padding: 20px 10px 10px 10px;
 }
