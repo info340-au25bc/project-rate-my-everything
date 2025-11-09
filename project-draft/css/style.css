@@ -14,7 +14,7 @@ header a {
 }
 
 header a:hover {
-    color: white;
+    color: #ffe8ee;
 }
 
 header h1 {
@@ -140,6 +140,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    background-color: #ffe8ee;
 }
 
 .list-body {
