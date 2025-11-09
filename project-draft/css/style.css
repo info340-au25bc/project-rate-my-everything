@@ -15,7 +15,7 @@ header a {
 }
 
 header a:hover {
-    color: #ffe8ee;
+   color: #ffe8ee;
 }
 
 header h1 {
@@ -87,6 +87,54 @@ header img {
     justify-content: center;
 }
 
+.filter-bar {
+    display: flex;
+    gap: 2rem;
+    width: fit-content;
+    max-width: 95%;
+    margin: 0 auto 2rem auto;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-section, .sort-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-bar label {
+    font-weight: 600;
+    color: #373133;
+    font-size: 14px;
+}
+
+.filter-bar select,
+.filter-bar input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #cca987;
+    border-radius: 6px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    background-color: white;
+    color: #373133;
+    transition: border-color 0.2s ease;
+}
+
+.filter-bar select:focus,
+.filter-bar input[type="text"]:focus {
+    outline: none;
+    border-color: #8C5B5E;
+    box-shadow: 0 0 0 2px rgba(140, 91, 94, 0.1);
+}
+
 div .card{
     border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -137,7 +185,6 @@ div .card{
     }
 }
 
-
 body {
     display: flex;
     align-items: center;
@@ -181,16 +228,7 @@ body {
     margin: 2rem;
 }
 
-/* section {
-    background-color: #ccc;
-    width: 80%;
-    max-width: 700px;
-    padding: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    text-align: center;
-} */
+
 
 h1, h2 {
     font-family: 'DM Serif Display', serif;
