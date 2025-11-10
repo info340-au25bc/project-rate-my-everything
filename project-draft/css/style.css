@@ -55,6 +55,11 @@ header ul a {
     margin-top: 2rem;
 }
 
+.log-section {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+}
+
 .header-container {
     display: flex;
     flex-direction: column;
@@ -108,15 +113,14 @@ header ul a {
     display: flex;
     gap: 2rem;
     width: fit-content;
-    max-width: 95%;
-    margin: 0 auto 2rem auto;
+    margin: 0 0 2rem 0;
     padding: 1.5rem;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .filter-section, .sort-section {
@@ -150,6 +154,11 @@ header ul a {
     outline: none;
     border-color: #8C5B5E;
     box-shadow: 0 0 0 2px rgba(140, 91, 94, 0.1);
+}
+
+h1.log-title {
+    text-align: left;
+    margin-bottom: 1rem;
 }
 
 div .card{
