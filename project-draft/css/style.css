@@ -6,7 +6,6 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px 10px 10px;
-    font-family: 'DM Serif Display', serif;
 }
 
 header a {
@@ -27,6 +26,24 @@ header img {
     filter: invert(1);
     width: 40px;
     height: auto;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+header li {
+    display: inline-block;
+}
+
+header ul a {
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
 }
 
 .intro {
@@ -280,6 +297,7 @@ ul {
 }
 
 footer {
+    text-align: center;
     background-color: rgb(41, 41, 41);
     color: white;
     width: 100%;
