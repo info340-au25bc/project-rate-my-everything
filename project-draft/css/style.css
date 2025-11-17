@@ -185,6 +185,42 @@ div .card{
     flex-shrink: 0;
 }
 
+.description-page {
+    background-color: rgb(41, 41, 41);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.description-page .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+.description-page .horizontal-card {
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.description-page .horizontal-card img {
+    width: 35%;
+    border-radius: 8px;
+}
+
+.description-page header {
+    background-color: #ffe8ee;
+}
+
+.description-page header a {
+    color: rgb(41, 41, 41);
+}
+
+
+
 .card-text, .card-text {
     padding: 1rem;
     flex: 1;
