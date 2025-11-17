@@ -274,6 +274,14 @@ label {
     margin-right: 1rem;
 }
 
+form {
+    margin-top: 2rem;
+}
+
+.newList{
+    margin-top: 2rem;
+}
+
 .add-list {
     margin-top: 0.5rem;
 }
