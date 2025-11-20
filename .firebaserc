@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "default": "rate-my-everything-b8b0b"
+  }
+}
