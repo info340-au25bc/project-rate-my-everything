@@ -237,7 +237,7 @@ div .card{
     font-size: 0.9rem;
 }
 
-body {
+div#body {
     display: flex;
     align-items: center;
     justify-content: center;

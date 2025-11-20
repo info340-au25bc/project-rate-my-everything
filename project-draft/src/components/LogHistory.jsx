@@ -1,11 +1,17 @@
 import React from 'react';
-import { RecCards } from './RecCards';
+import { LogCard } from './LogCard';
 
-export function LogHistory(props) {
+export function LogHistory({ data }) {
+    const logCards = data.map(log => <LogCard key={log.name} logData={log} />)
+    
     return (
-        <main class="container py-5">
-            <h1>Log History</h1>
-            <RecCards data={props.data} />
+        <main>
+            <div className="rec-log container py-5"> 
+                <h1>Log History</h1>
+                <div className="row g-4">
+                    {logCards}
+                </div>
+            </div>
         </main>
     )
 }
