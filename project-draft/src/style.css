@@ -49,6 +49,41 @@ header ul a {
     transition: color 0.3s ease;
 }
 
+header ul a.active {
+    font-weight: bold;
+}
+
+#nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.menu-toggle img {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.home-icon {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-only {
+    display: none;
+}
+
 .intro {
     text-align: center;
     padding: 5vw 5vw;
@@ -340,4 +375,40 @@ footer {
     width: 100%;
     padding: 20px 10px 10px 10px;
     margin-top: auto;
+}
+
+@media (max-width: 500px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .home-icon {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    header ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: auto;
+        background-color: rgb(41, 41, 41);
+        flex-direction: column;
+        gap: 0;
+    }
+
+    header ul.active {
+        display: flex;
+    }
+
+    header li {
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+    }
 }
