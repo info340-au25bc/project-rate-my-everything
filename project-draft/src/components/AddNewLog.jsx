@@ -1,6 +1,8 @@
 import React from 'react';
 
-export function AddNewLog() {
+export function AddNewLog({ addLog }) {
+    
+
     return (
         <main>
             <form>

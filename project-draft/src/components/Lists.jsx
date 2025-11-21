@@ -3,7 +3,7 @@ import { NavLink } from 'react-router'
 
 export function Lists() {
     return (
-        <main>
+        <main className="list-body">
             <div className="lists-header">
                 <h2>Your Lists</h2>
                 <NavLink to="/addlist" className="button">Add New List</NavLink>
