@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router';
 
-export function NavBar() {
+export function NavBar({ onOpenModal }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
 
@@ -21,6 +21,11 @@ export function NavBar() {
         };
     }, [isMenuOpen]);
 
+    const handleAddLogClick = () => {
+        setIsMenuOpen(false);
+        onOpenModal();
+    };
+
     return (
         <nav id="nav" ref={menuRef}>
             <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -34,7 +39,7 @@ export function NavBar() {
             <ul className={isMenuOpen ? 'active' : ''}>
                 <li className="mobile-only"><NavLink to="/home" onClick={() => setIsMenuOpen(false)}>Home</NavLink></li>
                 <li><NavLink to="/lists" onClick={() => setIsMenuOpen(false)}>Lists</NavLink></li>
-                <li><NavLink to="/addlog" onClick={() => setIsMenuOpen(false)}>Add Log</NavLink></li>
+                <li><button onClick={handleAddLogClick} className="nav-button">Add Log</button></li>
                 <li><NavLink to="loghistory" onClick={() => setIsMenuOpen(false)}>Log History</NavLink></li>
             </ul>
         </nav>

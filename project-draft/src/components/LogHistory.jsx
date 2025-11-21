@@ -2,6 +2,7 @@ import React from 'react';
 import { LogCard } from './LogCard';
 
 export function LogHistory({ data }) {
+    console.log(data);
     const logCards = data.map(log => <LogCard key={log.name} logData={log} />)
     
     return (

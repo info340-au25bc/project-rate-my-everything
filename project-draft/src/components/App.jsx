@@ -1,4 +1,4 @@
-import {React, useState } from 'react';
+import {React, useState, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router';
 import { NavBar } from './NavBar';
 import { Footer } from './Footer';
@@ -8,32 +8,53 @@ import { AddNewList } from './AddNewList';
 import { LogHistory } from './LogHistory';
 import { Lists } from './Lists';
 
+import SAMPLE_LOGS from '../data/logs.json'
 
 function App() {
+    // for add log modal window
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
     const [logs, setLogs] = useState(() => {
         const saved = localStorage.getItem('rateMyEverythingLogs');
         return saved ? JSON.parse(saved) : [];
     });
 
-    function addLog(name, category, rating, review, img) {
-        const newLog = {name: name, category: category, rating: rating, review: review, img: img}
+    const addLog = (name, category, date, rating, img, review) => {
+        const newLog = {name: name, category: category, date: date, rating: rating, review: review, img: img}
         setLogs([...logs, newLog]);
+        setIsModalOpen(false);
     }
+
+    //for keeping log history data after page refresh
+    useEffect(() => {
+        localStorage.setItem('rateMyEverythingLogs', JSON.stringify(logs));
+    }, [logs]);
+
 
     return (
         <div id="body">
             <header>
-                < NavBar />
+                < NavBar onOpenModal={openModal} />
             </header>
 
             <Routes>
-                <Route path="/home" element={<MainPage data={logs} />} />
+                <Route path="/home" element={<MainPage data={SAMPLE_LOGS} />} />
                 <Route path="/loghistory" element={<LogHistory data={logs}/>} />
                 <Route path="/lists" element={<Lists />} />
-                <Route path="/addlog" element={<AddNewLog prop={addLog}/>} />
                 <Route path="/addlist" element={<AddNewList />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
+
+            {isModalOpen && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>&times;</button>
+                        <AddNewLog addLog={addLog} />
+                    </div>
+                </div>
+            )}
 
             <footer>
                 < Footer />
