@@ -6,7 +6,7 @@ export function Lists() {
         <main className="list-body">
             <div className="lists-header">
                 <h2>Your Lists</h2>
-                <NavLink to="/addlist" className="button">Add New List</NavLink>
+                <NavLink to="/addlist" className="button">Add new list</NavLink>
             </div>
 
             <ul>

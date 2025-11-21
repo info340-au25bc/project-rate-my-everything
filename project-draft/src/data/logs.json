@@ -1,5 +1,5 @@
 [
-    {"name":"Ugly Mug Cafe", "category":"Study Space", "rating":3, "review":"", "img":"img/ugly.jpg"},
-    {"name":"Villa Italia Grapefruit Soda", "category":"Drink", "rating":5, "review":"This is definitely an underrated drink in trader joes. It is by far one of my favorite drinks from any market, it has the right amount of sourness along with its carbon making everything just right. I would definitely recommend everyone that likes a sour flavor to try it out.", "img":"img/grapefruit.jpg"},
-    {"name":"Lego Rose", "category":"Gift", "rating":3, "review":"I got this as a gift for my birthday and I really liked it because I got the second joy from the gift after building", "img":"img/rose.jpg"}
+    {"name":"Ugly Mug Cafe", "category":"Study Space", "date":"2025-11-21", "rating":3, "img":"img/ugly.jpg", "review":""},
+    {"name":"Villa Italia Grapefruit Soda", "category":"Drink", "date":"2025-11-18", "rating":5, "img":"img/grapefruit.jpg",  "review":"This is definitely an underrated drink in trader joes. It is by far one of my favorite drinks from any market, it has the right amount of sourness along with its carbon making everything just right. I would definitely recommend everyone that likes a sour flavor to try it out."},
+    {"name":"Lego Rose", "category":"Gift", "date":"2025-11-17", "rating":3, "img":"img/rose.jpg", "review":"I got this as a gift for my birthday and I really liked it because I got the second joy from the gift after building"}
 ]
