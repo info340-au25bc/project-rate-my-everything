@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 
 export function NavBar() {
     return (
         <nav id="nav">
             <ul>
-                <li><a href="index.html"><img src="https://cdn4.iconfinder.com/data/icons/seo-marketing-21/100/customer-512.png" /></a></li>
-                <li><a href="lists.html">Lists</a></li>
-                <li><a href="add-log.html">Add a Log</a></li>
-                <li><a href="log-history.html">Log History</a></li>
+                <li><NavLink to="/home"><img src="https://cdn4.iconfinder.com/data/icons/seo-marketing-21/100/customer-512.png" /></NavLink></li>
+                <li><NavLink to="/lists">Lists</NavLink></li>
+                <li><NavLink to="/addlog">Add Log</NavLink></li>
+                <li><NavLink to="loghistory">Log History</NavLink></li>
             </ul>
         </nav>
     );

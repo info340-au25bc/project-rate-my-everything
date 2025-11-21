@@ -1,11 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router'
 
-export function Lists(props) {
+export function Lists() {
     return (
         <main>
             <div className="lists-header">
                 <h2>Your Lists</h2>
-                <a href="add-list.html" class="button">Add New List</a>
+                <NavLink to="/addlist" className="button">Add New List</NavLink>
             </div>
 
             <ul>

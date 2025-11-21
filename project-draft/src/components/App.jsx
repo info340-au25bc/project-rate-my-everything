@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { Route, Routes, Navigate } from 'react-router';
 import { NavBar } from './NavBar';
 import { Footer } from './Footer';
 import { MainPage } from './MainPage';
@@ -19,11 +19,12 @@ function App() {
             </header>
 
             <Routes>
-                <Route path="" element={<MainPage data={LOG_DATA} />} />
+                <Route path="/home" element={<MainPage data={LOG_DATA} />} />
                 <Route path="/loghistory" element={<LogHistory data={LOG_DATA}/>} />
-                <Route path="/lists" element={<Lists data={LOG_DATA}/>} />
+                <Route path="/lists" element={<Lists />} />
                 <Route path="/addlog" element={<AddNewLog />} />
                 <Route path="/addlist" element={<AddNewList />} />
+                <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
 
             <footer>
