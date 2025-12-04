@@ -10,6 +10,7 @@ import { Lists } from './Lists';
 
 import SAMPLE_LOGS from '../data/logs.json'
 
+
 function App() {
     // for add log modal window
     const [isModalOpen, setIsModalOpen] = useState(false);

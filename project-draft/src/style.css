@@ -217,6 +217,20 @@ div .card{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.horizontal-card .card-body {
+    overflow: hidden;
+}
+
+.horizontal-card .card-title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.horizontal-card .card-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
 .horizontal-card img {
     width: 45%;
     min-width: 120px;
@@ -474,5 +488,9 @@ header .nav-button:hover {
         text-align: left;
         padding: 0.5rem 0;
         white-space: nowrap;
+    }
+
+    .image-label {
+        display: none;
     }
 }
