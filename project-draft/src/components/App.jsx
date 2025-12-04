@@ -1,83 +1,29 @@
-import {React, useState, useEffect } from 'react';
-import { Route, Routes, Navigate } from 'react-router';
+import React from 'react';
+import { Route, Routes } from 'react-router';
 import { NavBar } from './NavBar';
 import { Footer } from './Footer';
 import { MainPage } from './MainPage';
 import { AddNewLog } from './AddNewLog';
 import { AddNewList } from './AddNewList';
 import { LogHistory } from './LogHistory';
-import { Lists } from './Lists';
 import { DescriptionPage } from './DescriptionPage';
 
-import SAMPLE_LOGS from '../data/logs.json'
+import LOG_DATA from '../data/logs.json';
 
 
 function App() {
-    // for add log modal window
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
-
-    // for description modal window
-    const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
-    const [selectedLog, setSelectedLog] = useState(null);
-    const openDescriptionModal = (logData) => {
-        setSelectedLog(logData);
-        setIsDescriptionModalOpen(true);
-    };
-    const closeDescriptionModal = () => {
-        setIsDescriptionModalOpen(false);
-        setSelectedLog(null);
-    };
-
-    const [logs, setLogs] = useState(() => {
-        const saved = localStorage.getItem('rateMyEverythingLogs');
-        return saved ? JSON.parse(saved) : [];
-    });
-
-    const addLog = (name, category, date, rating, img, review) => {
-        const newLog = {name: name, category: category, date: date, rating: rating, review: review, img: img}
-        setLogs([...logs, newLog]);
-        setIsModalOpen(false);
-    }
-
-    //for keeping log history data after page refresh
-    useEffect(() => {
-        localStorage.setItem('rateMyEverythingLogs', JSON.stringify(logs));
-    }, [logs]);
-
-
     return (
-        <div id="body">
+        <div>
             <header>
-                < NavBar onOpenModal={openModal} />
+                < NavBar />
             </header>
 
             <Routes>
-                <Route path="/home" element={<MainPage data={SAMPLE_LOGS} onOpenDescriptionModal={openDescriptionModal} />} />
-                <Route path="/loghistory" element={<LogHistory data={logs}/>} />
-                <Route path="/lists" element={<Lists />} />
+                <Route path="" element={<MainPage data={LOG_DATA} />} />
+                <Route path="/addlog" element={<AddNewLog />} />
                 <Route path="/addlist" element={<AddNewList />} />
-                <Route path="*" element={<Navigate to="/home" />} />
+                <Route path="/loghistory" element={<LogHistory data={LOG_DATA}/>} />
             </Routes>
-
-            {isModalOpen && (
-                <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close" onClick={closeModal}>&times;</button>
-                        <AddNewLog addLog={addLog} />
-                    </div>
-                </div>
-            )}
-
-            {isDescriptionModalOpen && selectedLog && (
-                <div className="modal-overlay" onClick={closeDescriptionModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close" onClick={closeDescriptionModal}>&times;</button>
-                        <DescriptionPage logData={selectedLog} />
-                    </div>
-                </div>
-            )}
 
             <footer>
                 < Footer />
