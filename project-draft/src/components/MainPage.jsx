@@ -15,16 +15,16 @@ export function MainPage(props) {
                 </div>
             </div>
 
-        <div className="intro container">
-            <p>
-                Come join the community where you get to share and rate everything around you! It could
-                be a spot you found on campus that you enjoy studying at or a favorite restaurant you have
-                near by campus. It could even be just a favourite snack you got from Trader Joes! On this 
-                webpage you can find a rating to literally everything! Come RATE YOUR EVERYTHING!
-            </p>
-        </div>
+            <div className="intro container">
+                <p>
+                    Come join the community where you get to share and rate everything around you! It could
+                    be a spot you found on campus that you enjoy studying at or a favorite restaurant you have
+                    near by campus. It could even be just a favourite snack you got from Trader Joes! On this 
+                    webpage you can find a rating to literally everything! Come RATE YOUR EVERYTHING!
+                </p>
+            </div>
 
-        <RecCards data={props.data} />
-    </main>
+            <RecCards data={props.data} onOpenDescriptionModal={props.onOpenDescriptionModal} />
+        </main>
     )
 }

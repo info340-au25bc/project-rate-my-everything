@@ -7,6 +7,7 @@ import { AddNewLog } from './AddNewLog';
 import { AddNewList } from './AddNewList';
 import { LogHistory } from './LogHistory';
 import { Lists } from './Lists';
+import { DescriptionPage } from './DescriptionPage';
 
 import SAMPLE_LOGS from '../data/logs.json'
 
@@ -15,6 +16,18 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
+    // for description modal window
+    const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
+    const [selectedLog, setSelectedLog] = useState(null);
+    const openDescriptionModal = (logData) => {
+        setSelectedLog(logData);
+        setIsDescriptionModalOpen(true);
+    };
+    const closeDescriptionModal = () => {
+        setIsDescriptionModalOpen(false);
+        setSelectedLog(null);
+    };
 
     const [logs, setLogs] = useState(() => {
         const saved = localStorage.getItem('rateMyEverythingLogs');
@@ -40,7 +53,7 @@ function App() {
             </header>
 
             <Routes>
-                <Route path="/home" element={<MainPage data={SAMPLE_LOGS} />} />
+                <Route path="/home" element={<MainPage data={SAMPLE_LOGS} onOpenDescriptionModal={openDescriptionModal} />} />
                 <Route path="/loghistory" element={<LogHistory data={logs}/>} />
                 <Route path="/lists" element={<Lists />} />
                 <Route path="/addlist" element={<AddNewList />} />
@@ -52,6 +65,15 @@ function App() {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="modal-close" onClick={closeModal}>&times;</button>
                         <AddNewLog addLog={addLog} />
+                    </div>
+                </div>
+            )}
+
+            {isDescriptionModalOpen && selectedLog && (
+                <div className="modal-overlay" onClick={closeDescriptionModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeDescriptionModal}>&times;</button>
+                        <DescriptionPage logData={selectedLog} />
                     </div>
                 </div>
             )}

@@ -1,8 +1,8 @@
 import React from "react";
 import { LogCard } from './LogCard';
 
-export function RecCards({ data }) {
-    const recCards = data.map(log => <LogCard key={log.name} logData={log} />)
+export function RecCards({ data, onOpenDescriptionModal }) {
+    const recCards = data.map(log => <LogCard key={log.name} logData={log} onOpenDescriptionModal={onOpenDescriptionModal} />)
 
     return (
         <div className="rec-log container py-5"> 
