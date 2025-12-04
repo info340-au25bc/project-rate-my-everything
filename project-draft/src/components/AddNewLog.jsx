@@ -65,7 +65,7 @@ export function AddNewLog(props) {
                     <label htmlFor="rating">Rating:</label><input type="number" id="rating" name="rating" min="0" max="5" value={rating} onChange={handleRatingChange} />
                 </div>
                 <div className="field">
-                    <label htmlFor="imageToUpload">Image:</label><input type="file" id="imageToUpload" name="imageToUpload" accept="image/*" onChange={handleImgChange} />
+                    <label htmlFor="imageToUpload" className="image-label">Image:</label><input type="file" id="imageToUpload" name="imageToUpload" accept="image/*" onChange={handleImgChange} />
                 </div>
                 <div className="field">
                     <textarea id="review" name="review" placeholder="Add your review..." rows="4" cols="40" value={review} onChange={handleReviewChange}></textarea>
