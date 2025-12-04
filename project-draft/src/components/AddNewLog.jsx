@@ -6,7 +6,7 @@ export function AddNewLog(props) {
     const [logName, setName] = useState('');
     const [category, setCat] = useState('');
     const [date, setDate] = useState('');
-    const [rating, setRating] = useState();
+    const [rating, setRating] = useState('');
     const [img, setImg] = useState('');
     const [review, setReview] = useState('');
 
@@ -23,13 +23,7 @@ export function AddNewLog(props) {
         setRating(event.target.value)
     }
     const handleImgChange = (event) => {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImg(reader.result);
-        };
-        reader.readAsDataURL(file);
+        setImg(event.target.value)
     }
     const handleReviewChange = (event) => {
         setReview(event.target.value)
@@ -41,9 +35,9 @@ export function AddNewLog(props) {
         
         setName('');
         setCat('');
-        setDate();
+        setDate('');
         setRating('');
-        setImg();
+        setImg('');
         setReview('');
     }
 
@@ -58,7 +52,7 @@ export function AddNewLog(props) {
                     <label htmlFor="category">Category:</label><input type="text" id="category" name="category" value={category} onChange={handleCatChange} />
                 </div>
                 <div className="field">
-                    <label htmlFor="date">Date:</label><input type="date" id="date" name="date" value={date} onChange={handleDateChange} />
+                    <label htmlFor="date">Date:</label><input type="date" id="date" name="date" value={date} onChange={handleDateChange} required />
                 </div>
                 <div className="field">
                     <label htmlFor="rating">Rating:</label><input type="number" id="rating" name="rating" min="0" max="5" value={rating} onChange={handleRatingChange} />

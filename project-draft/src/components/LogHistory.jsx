@@ -1,9 +1,40 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { LogCard } from './LogCard';
 import { SearchBar } from './SearchBar';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
-export function LogHistory({ data, onOpenDescriptionModal }) {
+export function LogHistory({ onOpenDescriptionModal }) {
+    const [logs, setLogs] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+
+    // Subscribe to Firebase Realtime Database
+    useEffect(() => {
+        const db = getDatabase();
+        const allLogsRef = ref(db, 'allLogs');
+        
+        setIsLoading(true);
+        
+        const unsubscribe = onValue(allLogsRef, (snapshot) => {
+            const data = snapshot.val();
+            // Convert Firebase object to array
+            const logsArray = data ? Object.keys(data).map(key => ({
+                id: key,
+                ...data[key]
+            })) : [];
+            setLogs(logsArray);
+            setIsLoading(false);
+        }, (error) => {
+            console.error('Error reading logs:', error);
+            setLogs([]);
+            setIsLoading(false);
+        });
+
+        // Cleanup subscription on unmount
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
     const handleSearch = (term) => {
         setSearchTerm(term);
@@ -11,25 +42,33 @@ export function LogHistory({ data, onOpenDescriptionModal }) {
 
     const filteredLogs = useMemo(() => {
         if (!searchTerm.trim()) {
-            return data;
+            return logs;
         }
 
         const searchLower = searchTerm.toLowerCase();
-        return data.filter(log => {
+        return logs.filter(log => {
             return (
                 log.name.toLowerCase().includes(searchLower) ||
                 log.category.toLowerCase().includes(searchLower) ||
                 log.rating.toString().includes(searchLower)
             );
         });
-    }, [data, searchTerm]);
+    }, [logs, searchTerm]);
+
+    const handleEdit = (logData) => {
+        // TODO: Implement edit functionality (could open a modal or navigate to edit page)
+        console.log('Edit log:', logData);
+        alert('Edit functionality coming soon!');
+    };
 
     const logCards = filteredLogs.map(log => (
         <LogCard 
-            key={log.name} 
+            key={log.id || log.name} 
             logData={log} 
             onOpenDescriptionModal={onOpenDescriptionModal}
             showAddToList={false}
+            showActions={true}
+            onEdit={handleEdit}
         />
     ));
     
@@ -42,7 +81,9 @@ export function LogHistory({ data, onOpenDescriptionModal }) {
                         <SearchBar onSearch={handleSearch} />
                     </div>
                 </div>
-                {logCards.length > 0 ? (
+                {isLoading ? (
+                    <p className="no-results">Loading logs...</p>
+                ) : logCards.length > 0 ? (
                     <div className="row g-4">
                         {logCards}
                     </div>

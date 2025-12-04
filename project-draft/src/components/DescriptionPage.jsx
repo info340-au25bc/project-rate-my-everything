@@ -10,6 +10,13 @@ export function DescriptionPage({ logData }) {
         );
     }
 
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    };
+
     return (
         <div className="description-page">
             <div className="description-container">
@@ -28,7 +35,7 @@ export function DescriptionPage({ logData }) {
                         <div className="rating-display-wrapper">
                             <RatingDisplay rating={logData.rating} />
                         </div>
-                        <p className="rating-date">Logged on {logData.date}</p>
+                        <p className="rating-date">Logged on {formatDate(logData.date)}</p>
                     </div>
                     <div className="description-text">
                         {logData.review ? (

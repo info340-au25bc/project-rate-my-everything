@@ -7,10 +7,12 @@ import { AddNewLog } from './AddNewLog';
 import { Lists } from './Lists';
 import { LogHistory } from './LogHistory';
 import { DescriptionPage } from './DescriptionPage';
+import { getDatabase, ref, set, push } from 'firebase/database';
 
 import LOG_DATA from '../data/logs.json';
 
 function App() {
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -26,20 +28,22 @@ function App() {
         setSelectedLog(null);
     };
 
-    const [logs, setLogs] = useState(() => {
-        const saved = localStorage.getItem('rateMyEverythingLogs');
-        return saved ? JSON.parse(saved) : [];
-    });
-
     const addLog = (name, category, date, rating, img, review) => {
-        const newLog = {name: name, category: category, date: date, rating: rating, review: review, img: img}
-        setLogs([...logs, newLog]);
+        const newLog = {
+            name: name,
+            category: category,
+            date: date,
+            rating: rating,
+            review: review,
+            img: img
+        }
+        
+        const db = getDatabase();
+        const allLogsRef = ref(db, "allLogs");
+        push(allLogsRef, newLog);
+
         setIsModalOpen(false);
     }
-
-    useEffect(() => {
-        localStorage.setItem('rateMyEverythingLogs', JSON.stringify(logs));
-    }, [logs]);
 
     return (
         <div id="body">
@@ -49,7 +53,7 @@ function App() {
 
             <Routes>
                 <Route path="/home" element={<MainPage data={LOG_DATA} onOpenDescriptionModal={openDescriptionModal} />} />
-                <Route path="/loghistory" element={<LogHistory data={logs} onOpenDescriptionModal={openDescriptionModal} />} />
+                <Route path="/loghistory" element={<LogHistory onOpenDescriptionModal={openDescriptionModal} />} />
                 <Route path="/lists" element={<Lists />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>

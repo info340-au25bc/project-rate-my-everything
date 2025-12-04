@@ -133,6 +133,7 @@ header ul a.active {
 }
 
 .overlay-text h1 {
+    font-family: 'DM Serif Display', serif;
     font-size: 10vh;
     margin: 0;
     flex: 1;
@@ -193,11 +194,6 @@ h1.log-title {
     margin-bottom: 1rem;
 }
 
-div .card{
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
 .horizontal-card {
     display: flex;
     flex-direction: row;
@@ -208,37 +204,119 @@ div .card{
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    min-height: 200px;
+    height: 100%;
+    position: relative;
+}
+
+.card-actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
 }
 
 .horizontal-card .card-body {
-    overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     min-width: 0;
+    padding: 1rem;
+}
+
+.card-action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-action-btn:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.edit-btn {
+    color: #0088ff;
+}
+
+.edit-btn:hover {
+    background-color: #0088ff;
+    color: white;
+    border-color: #0088ff;
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .horizontal-card .card-title {
     word-wrap: break-word;
     overflow-wrap: break-word;
+    margin: 0;
+    font-size: 1.1rem;
 }
 
-.horizontal-card .card-text {
+.horizontal-card .card-body .card-text {
     word-wrap: break-word;
     overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 0.9rem;
+    font-weight: normal;
+    flex: none;
+}
+
+.horizontal-card .btn {
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+.horizontal-card .desc-btn:first-of-type {
+    margin-top: auto;
 }
 
 .horizontal-card img {
-    width: 45%;
+    width: 40%;
     min-width: 120px;
-    max-width: 200px;
-    height: 100%;
-    min-height: 200px;
+    max-width: 180px;
+    height: auto;
     object-fit: cover;
     flex-shrink: 0;
-    align-self: stretch;
 }
 
 .description-page {
@@ -285,7 +363,6 @@ div .card{
 }
 
 .description-title {
-    font-family: 'DM Serif Display', serif;
     font-size: 2rem;
     text-align: center;
     margin: 0;
@@ -338,10 +415,6 @@ div .card{
     text-overflow: ellipsis;
 }
 
-.card-text p {
-    font-size: 0.9rem;
-}
-
 div#body {
     display: flex;
     align-items: flex-start;
@@ -388,7 +461,6 @@ div#body main {
 }
 
 h1, h2 {
-    font-family: 'DM Serif Display', serif;
     text-align: center;
     padding-bottom: 0.5rem;
 }
@@ -611,6 +683,7 @@ header .nav-button:hover {
     display: flex;
     flex-direction: column;
     min-width: 0;
+    min-height: 240px;
 }
 
 
