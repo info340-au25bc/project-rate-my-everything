@@ -1,7 +1,7 @@
 import React from 'react';
 import { RatingDisplay } from './RatingDisplay';
 
-export function LogCard({ logData, onOpenDescriptionModal }) {
+export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true }) {
     const handleDescriptionClick = () => {
         if (onOpenDescriptionModal) {
             onOpenDescriptionModal(logData);
@@ -24,7 +24,9 @@ export function LogCard({ logData, onOpenDescriptionModal }) {
                     >
                         Review Description
                     </button>
-                    <button className="btn btn-dark w-100 add-list">Add to List</button>
+                    {showAddToList && (
+                        <button className="btn btn-dark w-100 add-list">Add to List</button>
+                    )}
                 </div>
             </div>
         </div>

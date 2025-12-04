@@ -6,9 +6,9 @@ export function MainPage(props) {
         <main>
             <div className="header-container">
                 <div className="image-row">
-                    <img src="img/study1.jpg" alt="indoor view of a library with cherry blossoms outside of the window" />
-                    <img src="img/study2.jpg" alt="indoor vieww of a public area in the PACCAR building" />
-                    <img src="img/theAve.jpeg" alt="a street view of an orange building with graffities on it" />
+                    <img src="/img/study1.jpg" alt="indoor view of a library with cherry blossoms outside of the window" />
+                    <img src="/img/study2.jpg" alt="indoor vieww of a public area in the PACCAR building" />
+                    <img src="/img/theAve.jpeg" alt="a street view of an orange building with graffities on it" />
                 </div>
                 <div className="overlay-text">
                     <h1>Rate My Everything</h1>

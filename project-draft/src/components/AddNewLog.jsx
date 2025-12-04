@@ -37,7 +37,6 @@ export function AddNewLog(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("submitting:", logName, category, date, rating, img, review);
         addLog(logName, category, date, rating, img, review);
         
         setName('');

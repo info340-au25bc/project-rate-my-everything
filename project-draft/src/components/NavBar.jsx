@@ -29,7 +29,7 @@ export function NavBar({ onOpenModal }) {
     return (
         <nav id="nav" ref={menuRef}>
             <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                <img src="img/menu_icon.png" alt="menu icon" />
+                <img src="/img/menu_icon.png" alt="menu icon" />
             </button>
 
             <NavLink to="/home" className="home-icon">

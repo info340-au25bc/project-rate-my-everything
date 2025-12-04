@@ -91,14 +91,6 @@ header ul a.active {
     padding: 5vw 5vw;
 }
 
-.desc {
-    margin-top: 2rem;
-}
-
-.log-section {
-    padding-left: 2.4rem;
-    padding-right: 2.4rem;
-}
 
 .header-container {
     display: flex;
@@ -215,10 +207,17 @@ div .card{
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    min-height: 200px;
 }
 
 .horizontal-card .card-body {
     overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
 }
 
 .horizontal-card .card-title {
@@ -234,9 +233,12 @@ div .card{
 .horizontal-card img {
     width: 45%;
     min-width: 120px;
-    height: auto;
+    max-width: 200px;
+    height: 100%;
+    min-height: 200px;
     object-fit: cover;
     flex-shrink: 0;
+    align-self: stretch;
 }
 
 .description-page {
@@ -248,25 +250,8 @@ div .card{
     width: 100%;
 }
 
-.description-page .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    width: 100%;
-}
 
-.description-page .horizontal-card {
-    padding: 1rem;
-    gap: 1rem;
-}
 
-.description-page .horizontal-card img {
-    width: 35%;
-    border-radius: 8px;
-}
-
-/* Description page styles (non-card format) */
 .description-container {
     display: flex;
     flex-direction: column;
@@ -341,15 +326,8 @@ div .card{
     margin: 0;
 }
 
-.description-page header {
-    background-color: #ffe8ee;
-}
 
-.description-page header a {
-    color: rgb(41, 41, 41);
-}
-
-.card-text, .card-text {
+.card-text {
     padding: 1rem;
     flex: 1;
     font-weight: 600;
@@ -366,13 +344,19 @@ div .card{
 
 div#body {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
     background-color: #ffe8ee;
+    width: 100%;
+}
+
+div#body main {
+    width: 100%;
+    flex: 1;
 }
 
 .list-body {
@@ -414,6 +398,7 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-top: 2rem;
 }
 
 label {
@@ -426,10 +411,6 @@ label {
     align-items: center;
     justify-content: center;
     width: 100%;
-}
-
-form {
-    margin-top: 2rem;
 }
 
 .newList{
@@ -503,14 +484,6 @@ footer {
     background-color: white;
 }
 
-.modal-content .description-page {
-    max-width: 100%;
-}
-
-.modal-content .description-page .container {
-    max-width: 100%;
-    padding: 0;
-}
 
 .modal-close {
     position: absolute;
@@ -581,7 +554,174 @@ header .nav-button:hover {
         white-space: nowrap;
     }
 
-    .image-label {
-        display: none;
+}
+
+.log-history-main {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.log-history-main .rec-log {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.log-history-main .container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search-bar-wrapper {
+    padding: 0;
+}
+
+.log-history-header {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    position: relative;
+    min-height: 80px;
+}
+
+.log-history-header h1 {
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.log-history-header .search-bar-wrapper {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.log-history-main .row {
+    margin-top: 4rem;
+}
+
+.log-history-main .col-12,
+.log-history-main .col-md-6,
+.log-history-main .col-lg-4 {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-input {
+    padding: 10px 16px;
+    border: 1px solid #cca987;
+    border-radius: 6px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    background-color: white;
+    color: #373133;
+    transition: border-color 0.2s ease;
+    min-width: 250px;
+    max-width: 400px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #8C5B5E;
+    box-shadow: 0 0 0 2px rgba(140, 91, 94, 0.1);
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #8C5B5E;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-button:hover {
+    background-color: #6d4548;
+}
+
+.search-button:active {
+    background-color: #5a383a;
+}
+
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .log-history-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar-container {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .horizontal-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .horizontal-card img {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 250px;
+        max-height: 300px;
+    }
+
+    .log-history-main .row {
+        margin-top: 5rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .horizontal-card {
+        min-height: 220px;
+    }
+
+    .horizontal-card img {
+        min-height: 220px;
+        max-width: 180px;
+    }
+}
+
+@media (min-width: 993px) {
+    .horizontal-card {
+        min-height: 200px;
+    }
+
+    .horizontal-card img {
+        min-height: 200px;
+        max-width: 200px;
     }
 }
