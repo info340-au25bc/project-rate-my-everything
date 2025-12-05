@@ -529,7 +529,7 @@ input, textarea {
     margin-bottom: 1rem;
 }
 
-.button:hover {
+.button:hover, #sign-out:hover {
     background: #0068b3;
 }
 
@@ -609,10 +609,6 @@ footer {
     padding: 0.4rem 0.8rem;
     margin-left: auto;
     white-space: nowrap;
-}
-
-#sign-out:hover {
-    background: #ffe8ee;
 }
 
 header .navbutton:hover {

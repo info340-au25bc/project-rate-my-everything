@@ -46,9 +46,9 @@ export function NavBar({ onOpenModal }) {
 
             <ul className={isMenuOpen ? 'active' : ''}>
                 <li className="mobile-only"><NavLink to="/home" onClick={() => setIsMenuOpen(false)}>Home</NavLink></li>
-                <li><NavLink to="/lists" onClick={() => setIsMenuOpen(false)}>Lists</NavLink></li>
                 <li><button onClick={handleAddLogClick} className="nav-button">Add Log</button></li>
                 <li><NavLink to="loghistory" onClick={() => setIsMenuOpen(false)}>Log History</NavLink></li>
+                <li><NavLink to="/lists" onClick={() => setIsMenuOpen(false)}>Lists</NavLink></li>
             </ul>
 
             {user && (

@@ -26,8 +26,9 @@ export function LogHistory({ onOpenDescriptionModal }) {
             
             // Filter by current user
             const auth = getAuth();
-            const userLogs = logsArray.filter(log => log.userId === auth.currentUser?.uid);
+            const userLogs = logsArray.filter(log => log.userId === auth.currentUser?.uid).reverse();
             
+
             setLogs(userLogs);
             setIsLoading(false);
         });

@@ -23,7 +23,18 @@ export function AddNewLog(props) {
         setRating(event.target.value)
     }
     const handleImgChange = (event) => {
-        setImg(event.target.value)
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        
+        reader.onload = () => {
+            const dataUrl = reader.result;
+            setImg(dataUrl); // Store the data URL in state
+        };
+
+        reader.readAsDataURL(file);
+        setImg(event.target.value);
     }
     const handleReviewChange = (event) => {
         setReview(event.target.value)

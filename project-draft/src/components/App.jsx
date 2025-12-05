@@ -12,8 +12,6 @@ import { LogHistory } from './LogHistory';
 import { DescriptionPage } from './DescriptionPage';
 import { SignInPage } from './SignInPage';
 
-import LOG_DATA from '../data/logs.json';
-
 function App() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
