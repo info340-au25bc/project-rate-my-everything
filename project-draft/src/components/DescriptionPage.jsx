@@ -41,7 +41,7 @@ export function DescriptionPage({ logData }) {
                         {logData.review ? (
                             <p className="description-review">{logData.review}</p>
                         ) : (
-                            <p className="description-review">No review available.</p>
+                            <p className="description-review">No review.</p>
                         )}
                     </div>
                 </div>

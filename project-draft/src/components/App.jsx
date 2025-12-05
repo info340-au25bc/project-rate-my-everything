@@ -1,5 +1,8 @@
 import {React, useState, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getDatabase, ref, set, push } from 'firebase/database';
+
 import { NavBar } from './NavBar';
 import { Footer } from './Footer';
 import { MainPage } from './MainPage';
@@ -7,15 +10,17 @@ import { AddNewLog } from './AddNewLog';
 import { Lists } from './Lists';
 import { LogHistory } from './LogHistory';
 import { DescriptionPage } from './DescriptionPage';
-import { getDatabase, ref, set, push } from 'firebase/database';
+import { SignInPage } from './SignInPage';
 
 import LOG_DATA from '../data/logs.json';
 
 function App() {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const [isAddLogModalOpen, setIsAddLogModalOpen] = useState(false);
+    const openAddLogModal = () => setIsAddLogModalOpen(true);
+    const closeAddLogModal = () => setIsAddLogModalOpen(false);
 
     const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
     const [selectedLog, setSelectedLog] = useState(null);
@@ -28,27 +33,60 @@ function App() {
         setSelectedLog(null);
     };
 
-    const addLog = (name, category, date, rating, img, review) => {
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!user) {
+        return (
+            <div id="body">
+                <header><NavBar /></header>
+                <SignInPage />
+                <footer><Footer /></footer>
+            </div>
+        );
+    }
+
+    const addLog = async (name, category, date, rating, img, review) => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        
+        if (!user) {
+            alert('You must be signed in to add logs');
+            return;
+        }
+    
         const newLog = {
             name: name,
             category: category,
             date: date,
             rating: rating,
             review: review,
-            img: img
-        }
+            img: img,
+            userId: user.uid,
+            userEmail: user.email
+        };
         
         const db = getDatabase();
         const allLogsRef = ref(db, "allLogs");
-        push(allLogsRef, newLog);
-
-        setIsModalOpen(false);
+        await push(allLogsRef, newLog);
+        setIsAddLogModalOpen(false);
     }
 
     return (
         <div id="body">
             <header>
-                < NavBar onOpenModal={openModal} />
+                < NavBar onOpenModal={openAddLogModal} />
             </header>
 
             <Routes>
@@ -58,10 +96,10 @@ function App() {
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
 
-            {isModalOpen && (
-                <div className="modal-overlay" onClick={closeModal}>
+            {isAddLogModalOpen && (
+                <div className="modal-overlay" onClick={closeAddLogModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close" onClick={closeModal}>&times;</button>
+                        <button className="modal-close" onClick={closeAddLogModal}>&times;</button>
                         <AddNewLog addLog={addLog} />
                     </div>
                 </div>

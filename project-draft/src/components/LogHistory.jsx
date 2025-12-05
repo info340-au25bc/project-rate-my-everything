@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { LogCard } from './LogCard';
 import { SearchBar } from './SearchBar';
 import { getDatabase, ref, onValue } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
 
 export function LogHistory({ onOpenDescriptionModal }) {
     const [logs, setLogs] = useState([]);
@@ -17,20 +18,20 @@ export function LogHistory({ onOpenDescriptionModal }) {
         
         const unsubscribe = onValue(allLogsRef, (snapshot) => {
             const data = snapshot.val();
-            // Convert Firebase object to array
+            // Convert to object
             const logsArray = data ? Object.keys(data).map(key => ({
                 id: key,
                 ...data[key]
             })) : [];
-            setLogs(logsArray);
-            setIsLoading(false);
-        }, (error) => {
-            console.error('Error reading logs:', error);
-            setLogs([]);
+            
+            // Filter by current user
+            const auth = getAuth();
+            const userLogs = logsArray.filter(log => log.userId === auth.currentUser?.uid);
+            
+            setLogs(userLogs);
             setIsLoading(false);
         });
 
-        // Cleanup subscription on unmount
         return () => {
             unsubscribe();
         };

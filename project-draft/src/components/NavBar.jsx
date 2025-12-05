@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router';
+import { getAuth, signOut } from 'firebase/auth';
 
 export function NavBar({ onOpenModal }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,6 +27,13 @@ export function NavBar({ onOpenModal }) {
         onOpenModal();
     };
 
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const handleSignOut = () => {
+        signOut(auth);
+    };
+
     return (
         <nav id="nav" ref={menuRef}>
             <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -42,6 +50,12 @@ export function NavBar({ onOpenModal }) {
                 <li><button onClick={handleAddLogClick} className="nav-button">Add Log</button></li>
                 <li><NavLink to="loghistory" onClick={() => setIsMenuOpen(false)}>Log History</NavLink></li>
             </ul>
+
+            {user && (
+                <button id='sign-out' onClick={handleSignOut} className="nav-button">
+                    Sign Out
+                </button>
+            )}
         </nav>
     );
 }
