@@ -56,20 +56,13 @@ export function LogHistory({ onOpenDescriptionModal }) {
         });
     }, [logs, searchTerm]);
 
-    const handleEdit = (logData) => {
-        // TODO: Implement edit functionality (could open a modal or navigate to edit page)
-        console.log('Edit log:', logData);
-        alert('Edit functionality coming soon!');
-    };
-
     const logCards = filteredLogs.map(log => (
         <LogCard 
-            key={log.id || log.name} 
+            key={log.id} 
             logData={log} 
             onOpenDescriptionModal={onOpenDescriptionModal}
-            showAddToList={false}
+            showAddToList={true}
             showActions={true}
-            onEdit={handleEdit}
         />
     ));
     

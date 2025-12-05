@@ -259,18 +259,9 @@ h1.log-title {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-.edit-btn {
-    color: #0088ff;
-}
-
-.edit-btn:hover {
-    background-color: #0088ff;
-    color: white;
-    border-color: #0088ff;
-}
-
 .delete-btn {
     color: #dc3545;
+    margin: 0.5rem;
 }
 
 .delete-btn:hover {
@@ -319,8 +310,17 @@ h1.log-title {
     flex-shrink: 0;
 }
 
-.horizontal-card .desc-btn:first-of-type {
-    margin-top: auto;
+.desc-btn:first-of-type {
+    margin-top: 1vh;
+}
+
+.desc-btn {
+    background-color: rgb(41, 41, 41);
+    color: white;
+}
+
+.desc-btn:hover {
+    color: white;
 }
 
 .horizontal-card img {
@@ -498,8 +498,8 @@ label {
     width: 100%;
 }
 
-.image-label {
-    display: none;
+.field:has(.image-label) {
+    flex-direction: column;
 }
 
 .newList{
@@ -600,8 +600,8 @@ footer {
 }
 
 #sign-out {
-    background: white;
-    color: rgb(41, 41, 41);
+    background: #0088ff;
+    color: white;
     font-weight: 500;
     border: none;
     cursor: pointer;
@@ -649,18 +649,17 @@ header .navbutton:hover {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
 }
 
 .log-history-header h1 {
     margin: 0;
-    width: 100%;
+    text-align: center;
 }
 
 .log-history-header .search-bar-wrapper {
     padding: 0;
-    width: 100%;
 }
 
 .search-bar-container {
@@ -809,40 +808,21 @@ header .navbutton:hover {
         padding: 0;
         white-space: normal;
     }
-
-    .image-label {
-        display: inline;
-    }
 }
 
 @media (min-width: 769px) {
-    .log-history-header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .log-history-header h1 {
-        width: auto;
-    }
-
-    .log-history-header .search-bar-wrapper {
-        width: auto;
-    }
-
-    .search-bar-container {
-        width: auto;
-    }
-
     .search-input {
-        width: auto;
-        min-width: 250px;
+        min-width: 300px;
         max-width: 400px;
     }
 
     .horizontal-card {
         flex-direction: row;
         min-height: 220px;
+    }
+
+    .delete-btn {
+        margin: 0;
     }
 
     .horizontal-card img {

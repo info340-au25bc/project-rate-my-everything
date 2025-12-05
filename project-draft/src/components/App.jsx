@@ -74,7 +74,8 @@ function App() {
             review: review,
             img: img,
             userId: user.uid,
-            userEmail: user.email
+            userEmail: user.email,
+            createdAt: Date.now()
         };
         
         const db = getDatabase();
@@ -90,7 +91,7 @@ function App() {
             </header>
 
             <Routes>
-                <Route path="/home" element={<MainPage data={LOG_DATA} onOpenDescriptionModal={openDescriptionModal} />} />
+                <Route path="/home" element={<MainPage onOpenDescriptionModal={openDescriptionModal} />} />
                 <Route path="/loghistory" element={<LogHistory onOpenDescriptionModal={openDescriptionModal} />} />
                 <Route path="/lists" element={<Lists />} />
                 <Route path="*" element={<Navigate to="/home" />} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { RatingDisplay } from './RatingDisplay';
 import { getDatabase, ref, remove } from 'firebase/database';
 
-export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true, showActions = false, onEdit }) {
+export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true, showActions = false }) {
     const handleDescriptionClick = () => {
         if (onOpenDescriptionModal) {
             onOpenDescriptionModal(logData);
@@ -25,12 +25,6 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
         }
     };
 
-    const handleEdit = () => {
-        if (onEdit) {
-            onEdit(logData);
-        }
-    };
-
     const formatDate = (dateString) => {
         if (!dateString) return '';
         const date = new Date(dateString);
@@ -43,13 +37,6 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
             <div className="horizontal-card">
                 {showActions && (
                     <div className="card-actions">
-                        <button 
-                            className="card-action-btn edit-btn" 
-                            onClick={handleEdit}
-                            title="Edit log"
-                        >
-                            <i className="bi bi-pencil"></i>
-                        </button>
                         <button 
                             className="card-action-btn delete-btn" 
                             onClick={handleDelete}
@@ -70,7 +57,7 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
                     </div>
                     <div className="card-buttons">
                         <button 
-                            className="btn btn-dark w-100 desc-btn"
+                            className="btn w-100 desc-btn"
                             onClick={handleDescriptionClick}
                         >
                             Review Description
