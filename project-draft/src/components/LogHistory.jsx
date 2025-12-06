@@ -13,7 +13,7 @@ export function LogHistory({ onOpenDescriptionModal }) {
     useEffect(() => {
         const db = getDatabase();
         const allLogsRef = ref(db, 'allLogs');
-        
+
         setIsLoading(true);
         
         const unsubscribe = onValue(allLogsRef, (snapshot) => {

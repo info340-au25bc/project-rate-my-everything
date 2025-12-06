@@ -11,6 +11,7 @@ import { Lists } from './Lists';
 import { LogHistory } from './LogHistory';
 import { DescriptionPage } from './DescriptionPage';
 import { SignInPage } from './SignInPage';
+import { AddNewList } from './AddNewList';
 
 function App() {
     const [user, setUser] = useState(null);
@@ -30,6 +31,10 @@ function App() {
         setIsDescriptionModalOpen(false);
         setSelectedLog(null);
     };
+
+    const [isAddListModalOpen, setIsAddListModalOpen] = useState(false);
+    const openAddListModal = () => setIsAddListModalOpen(true);
+    const closeAddListModal = () => setIsAddListModalOpen(false);
 
     useEffect(() => {
         const auth = getAuth();
@@ -82,6 +87,30 @@ function App() {
         setIsAddLogModalOpen(false);
     }
 
+    const addList = async (listName, listImg, listDesc) => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        
+        if (!user) {
+            alert('You must be signed in to create a list');
+            return;
+        }
+
+        const newList = {
+            name: listName,
+            img: listImg,
+            description: listDesc,
+            userId: user.uid,
+            userEmail: user.email,
+            createdAt: Date.now()
+        }
+
+        const db = getDatabase();
+        const allListsRef = ref(db, "allLists");
+        await push(allListsRef, newList);
+        setIsAddListModalOpen(false);
+    }
+
     return (
         <div id="body">
             <header>
@@ -91,7 +120,7 @@ function App() {
             <Routes>
                 <Route path="/home" element={<MainPage onOpenDescriptionModal={openDescriptionModal} />} />
                 <Route path="/loghistory" element={<LogHistory onOpenDescriptionModal={openDescriptionModal} />} />
-                <Route path="/lists" element={<Lists />} />
+                <Route path="/lists" element={<Lists onOpenAddListModal={openAddListModal}/>} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
 
@@ -109,6 +138,15 @@ function App() {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="modal-close" onClick={closeDescriptionModal}>&times;</button>
                         <DescriptionPage logData={selectedLog} />
+                    </div>
+                </div>
+            )}
+
+            {isAddListModalOpen && (
+                <div className="modal-overlay" onClick={closeAddListModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <button className="modal-close" onClick={closeAddListModal}>&times;</button>
+                        <AddNewList addList={addList} />
                     </div>
                 </div>
             )}
