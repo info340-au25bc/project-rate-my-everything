@@ -529,8 +529,12 @@ input, textarea {
     margin-bottom: 1rem;
 }
 
-.button:hover, #sign-out:hover {
+.button:hover {
     background: #0068b3;
+}
+
+#sign-out:hover {
+    background: #ffe8ee;
 }
 
 ul {
@@ -600,8 +604,8 @@ footer {
 }
 
 #sign-out {
-    background: #0088ff;
-    color: white;
+    background: white;
+    color: rgb(41, 41, 41);
     font-weight: 500;
     border: none;
     cursor: pointer;
