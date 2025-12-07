@@ -4,10 +4,8 @@ import { BrowserRouter } from 'react-router';
 import './style.css'
 import App from './components/App.jsx'
 
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBNgEEKWAELSaSodwpn3kipFPqSZZ4Fwqk",
   authDomain: "rate-my-everything-b8b0b.firebaseapp.com",
@@ -19,7 +17,6 @@ const firebaseConfig = {
   measurementId: "G-8W3D2N1VHB"
 };
 
-// Initialize Firebase
 initializeApp(firebaseConfig);
 
 createRoot(document.getElementById('root')).render(

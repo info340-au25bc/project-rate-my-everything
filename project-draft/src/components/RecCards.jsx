@@ -16,22 +16,19 @@ export function RecCards({ onOpenDescriptionModal }) {
             const data = snapshot.val();
             const currentUserId = auth.currentUser?.uid;
             
-            // Convert Firebase object to array
             let logsArray = data ? Object.keys(data).map(key => ({
                 id: key,
                 ...data[key]
             })) : [];
             
-            // Filter out current user's logs
             if (currentUserId) {
                 logsArray = logsArray.filter(log => log.userId !== currentUserId);
             }
             
-            // Sort by createdAt and take top 3
             logsArray.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-            const newestThree = logsArray.slice(0, 3);
+            const newestNine = logsArray.slice(0, 9);
             
-            setLogs(newestThree);
+            setLogs(newestNine);
             setIsLoading(false);
         }, (error) => {
             console.error('Error reading logs:', error);

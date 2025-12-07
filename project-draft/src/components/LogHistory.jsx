@@ -9,7 +9,6 @@ export function LogHistory({ onOpenDescriptionModal }) {
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Subscribe to Firebase Realtime Database
     useEffect(() => {
         const db = getDatabase();
         const allLogsRef = ref(db, 'allLogs');
@@ -18,13 +17,11 @@ export function LogHistory({ onOpenDescriptionModal }) {
         
         const unsubscribe = onValue(allLogsRef, (snapshot) => {
             const data = snapshot.val();
-            // Convert to object
             const logsArray = data ? Object.keys(data).map(key => ({
                 id: key,
                 ...data[key]
             })) : [];
             
-            // Filter by current user
             const auth = getAuth();
             const userLogs = logsArray.filter(log => log.userId === auth.currentUser?.uid).reverse();
             

@@ -1,6 +1,7 @@
 import React from 'react';
 import { RatingDisplay } from './RatingDisplay';
 import { getDatabase, ref, remove } from 'firebase/database';
+import Dropdown from './Dropdown';
 
 export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true, showActions = false }) {
     const handleDescriptionClick = () => {
@@ -56,14 +57,32 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
                         <p className="card-text">{formatDate(logData.date)}</p>
                     </div>
                     <div className="card-buttons">
-                        <button 
-                            className="btn w-100 desc-btn"
-                            onClick={handleDescriptionClick}
-                        >
-                            Review Description
-                        </button>
-                        {showAddToList && (
-                            <button className="btn btn-dark w-100 add-list">Add to List</button>
+                        {showAddToList ? (
+                            <Dropdown
+                                trigger={
+                                    <button className="btn btn-dark w-100 view-more-btn">
+                                        View More
+                                    </button>
+                                }
+                                items={[
+                                    {
+                                        label: 'Review Description',
+                                        onClick: handleDescriptionClick
+                                    },
+                                    {
+                                        label: 'Add to List',
+                                        onClick: () => {
+                                        }
+                                    }
+                                ]}
+                            />
+                        ) : (
+                            <button 
+                                className="btn w-100 desc-btn"
+                                onClick={handleDescriptionClick}
+                            >
+                                Review Description
+                            </button>
                         )}
                     </div>
                 </div>
