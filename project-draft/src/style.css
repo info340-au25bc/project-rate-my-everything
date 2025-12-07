@@ -31,38 +31,83 @@ header img {
     height: auto;
 }
 
-header ul {
+header ul.desktop-menu {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    flex-direction: column;
-    gap: 0;
-    width: auto;
-    background-color: rgb(41, 41, 41);
-    z-index: 100;
-    list-style: none;
-    margin: 0;
+}
+
+.menu-dropdown {
+    display: block;
+}
+
+.menu-dropdown .dropdown-toggle {
+    background: none;
+    border: none;
     padding: 0;
 }
 
-header ul.active {
-    display: flex;
+.menu-dropdown .dropdown-toggle::after {
+    display: none;
 }
 
-header li {
+.menu-dropdown .dropdown-menu {
+    background-color: rgb(41, 41, 41);
+    border: none;
+    margin-top: 0.5rem;
+}
+
+.menu-dropdown .dropdown-item {
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+.menu-dropdown .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffe8ee;
+}
+
+.menu-dropdown .dropdown-item-link {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+.menu-dropdown .dropdown-item-link:hover {
+    color: #ffe8ee;
+}
+
+.menu-dropdown .dropdown-item-link.active {
+    font-weight: bold;
+}
+
+.menu-dropdown .nav-button {
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.menu-dropdown .nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffe8ee;
+}
+
+header ul.desktop-menu li {
     width: 100%;
     text-align: left;
     padding: 0.5rem 0;
     white-space: nowrap;
 }
 
-header ul a {
+header ul.desktop-menu a {
     padding: 0.5rem 1rem;
     transition: color 0.3s ease;
 }
 
-header ul a.active {
+header ul.desktop-menu a.active {
     font-weight: bold;
 }
 
@@ -289,9 +334,7 @@ h1.log-title {
 }
 
 .card-actions-dropdown {
-    position: relative;
     width: 100%;
-    z-index: 10;
 }
 
 .col-12,
@@ -304,45 +347,9 @@ h1.log-title {
     width: 100%;
 }
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    margin-top: 0.25rem;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+.card-actions-dropdown .dropdown-menu {
+    width: 100%;
     min-width: 100%;
-}
-
-.dropdown-item {
-    padding: 0.75rem 1rem;
-    background-color: white;
-    border: none;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    font-size: 0.9rem;
-    color: #373133;
-}
-
-.dropdown-item:last-child {
-    border-bottom: none;
-}
-
-.dropdown-item:hover {
-    background-color: #f5f5f5;
-}
-
-.dropdown-item:active {
-    background-color: #e9e9e9;
 }
 
 .horizontal-card .card-title {
@@ -838,6 +845,10 @@ header .navbutton:hover {
         display: none;
     }
 
+    .menu-dropdown {
+        display: none;
+    }
+
     .home-icon {
         display: flex;
         align-items: center;
@@ -851,7 +862,7 @@ header .navbutton:hover {
         padding-left: 0;
     }
 
-    header ul {
+    header ul.desktop-menu {
         display: flex;
         position: static;
         flex-direction: row;
@@ -860,9 +871,12 @@ header .navbutton:hover {
         background-color: transparent;
         align-items: center;
         z-index: auto;
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
-    header li {
+    header ul.desktop-menu li {
         width: auto;
         display: inline-block;
         text-align: center;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RatingDisplay } from './RatingDisplay';
 import { getDatabase, ref, remove } from 'firebase/database';
-import Dropdown from './Dropdown';
+import DropdownButton from './DropdownButton';
 
 export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true, showActions = false }) {
     const handleDescriptionClick = () => {
@@ -58,12 +58,7 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
                     </div>
                     <div className="card-buttons">
                         {showAddToList ? (
-                            <Dropdown
-                                trigger={
-                                    <button className="btn btn-dark w-100 view-more-btn">
-                                        View More
-                                    </button>
-                                }
+                            <DropdownButton
                                 items={[
                                     {
                                         label: 'Review Description',
