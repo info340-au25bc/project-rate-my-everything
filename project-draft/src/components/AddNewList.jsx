@@ -19,7 +19,7 @@ export function AddNewList(props) {
         
         reader.onload = () => {
             const dataUrl = reader.result;
-            setImg(dataUrl); // Store the data URL in state
+            setListImg(dataUrl); // Store the data URL in state
         };
 
         reader.readAsDataURL(file);
@@ -38,7 +38,7 @@ export function AddNewList(props) {
         setListImg('');
         setListDesc('');
     }
-
+   
     return (
         <main>
             <section className="newList">
