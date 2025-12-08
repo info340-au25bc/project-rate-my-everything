@@ -67,6 +67,7 @@ export function LogCard({ logData, onOpenDescriptionModal, onOpenAddToListModal,
                 <div className="card-body">
                     <div className="card-content">
                         <h2 className="card-title">{logData.name}</h2>
+                        {logData.category && <p className="card-text">{logData.category}</p>}
                         <p className="card-text">
                             <RatingDisplay rating={logData.rating} />
                         </p>
