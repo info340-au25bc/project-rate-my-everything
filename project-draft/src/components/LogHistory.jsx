@@ -3,11 +3,14 @@ import { LogCard } from './LogCard';
 import { SearchBar } from './SearchBar';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
+import { Dropdown } from 'react-bootstrap';
 
 export function LogHistory({ onOpenDescriptionModal }) {
     const [logs, setLogs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [sortBy, setSortBy] = useState('date');
+    const [sortOrder, setSortOrder] = useState('desc');
 
     useEffect(() => {
         const db = getDatabase();
@@ -39,22 +42,62 @@ export function LogHistory({ onOpenDescriptionModal }) {
         setSearchTerm(term);
     };
 
-    const filteredLogs = useMemo(() => {
-        if (!searchTerm.trim()) {
-            return logs;
+    const filteredAndSortedLogs = useMemo(() => {
+        // First, filter the logs
+        let result = logs;
+        if (searchTerm.trim()) {
+            const searchLower = searchTerm.toLowerCase();
+            result = logs.filter(log => {
+                return (
+                    log.name.toLowerCase().includes(searchLower) ||
+                    (log.category && log.category.toLowerCase().includes(searchLower)) ||
+                    (log.rating && log.rating.toString().includes(searchLower))
+                );
+            });
         }
 
-        const searchLower = searchTerm.toLowerCase();
-        return logs.filter(log => {
-            return (
-                log.name.toLowerCase().includes(searchLower) ||
-                log.category.toLowerCase().includes(searchLower) ||
-                log.rating.toString().includes(searchLower)
-            );
-        });
-    }, [logs, searchTerm]);
+        // Then, sort the logs
+        const sorted = [...result].sort((a, b) => {
+            let aValue, bValue;
 
-    const logCards = filteredLogs.map(log => (
+            switch (sortBy) {
+                case 'name':
+                    aValue = a.name?.toLowerCase() || '';
+                    bValue = b.name?.toLowerCase() || '';
+                    break;
+                case 'category':
+                    // Put logs without category at the bottom
+                    if (!a.category && !b.category) return 0;
+                    if (!a.category) return 1;
+                    if (!b.category) return -1;
+                    aValue = a.category.toLowerCase();
+                    bValue = b.category.toLowerCase();
+                    break;
+                case 'rating':
+                    // Put logs without rating at the bottom
+                    if (a.rating === undefined && b.rating === undefined) return 0;
+                    if (a.rating === undefined) return 1;
+                    if (b.rating === undefined) return -1;
+                    aValue = a.rating;
+                    bValue = b.rating;
+                    break;
+                case 'date':
+                default:
+                    aValue = a.date ? new Date(a.date).getTime() : 0;
+                    bValue = b.date ? new Date(b.date).getTime() : 0;
+                    break;
+            }
+
+            // Compare values
+            if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+            if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
+            return 0;
+        });
+
+        return sorted;
+    }, [logs, searchTerm, sortBy, sortOrder]);
+
+    const logCards = filteredAndSortedLogs.map(log => (
         <LogCard 
             key={log.id} 
             logData={log} 
@@ -71,6 +114,30 @@ export function LogHistory({ onOpenDescriptionModal }) {
                     <h1>Log History</h1>
                     <div className="search-bar-wrapper">
                         <SearchBar onSearch={handleSearch} />
+                    </div>
+                    <div className="sort-controls">
+                        <label>Sort by:</label>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="light" className="sort-select">
+                                {sortBy === 'date' && 'Date'}
+                                {sortBy === 'name' && 'Name'}
+                                {sortBy === 'category' && 'Category'}
+                                {sortBy === 'rating' && 'Rating'}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={() => setSortBy('date')}>Date</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setSortBy('name')}>Name</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setSortBy('category')}>Category</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setSortBy('rating')}>Rating</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <button 
+                            onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+                            className="sort-order-btn"
+                            title={sortOrder === 'asc' ? 'Ascending' : 'Descending'}
+                        >
+                            {sortOrder === 'asc' ? '↑' : '↓'}
+                        </button>
                     </div>
                 </div>
                 {isLoading ? (

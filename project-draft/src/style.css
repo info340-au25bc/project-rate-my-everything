@@ -718,6 +718,60 @@ header .navbutton:hover {
     padding: 0;
 }
 
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sort-controls label {
+    font-weight: 500;
+    color: #373133;
+}
+
+.sort-select {
+    padding: 8px 12px;
+    border: 1px solid #cca987;
+    border-radius: 6px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: #8C5B5E;
+    box-shadow: 0 0 0 2px rgba(140, 91, 94, 0.1);
+}
+
+.sort-order-btn {
+    padding: 8px 12px;
+    background-color: #8C5B5E;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-order-btn:hover {
+    background-color: #6d4548;
+}
+
+.sort-order-btn:active {
+    background-color: #5a383a;
+}
+
 .search-bar-container {
     width: 100%;
 }
