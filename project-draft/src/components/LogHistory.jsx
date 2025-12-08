@@ -38,7 +38,6 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
     };
 
     const filteredAndSortedLogs = useMemo(() => {
-        // First, filter the logs
         let result = logs;
         if (searchTerm.trim()) {
             const searchLower = searchTerm.toLowerCase();
@@ -51,7 +50,6 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
             });
         }
 
-        // Then, sort the logs
         const sorted = [...result].sort((a, b) => {
             let aValue, bValue;
 
@@ -61,7 +59,6 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
                     bValue = b.name?.toLowerCase() || '';
                     break;
                 case 'category':
-                    // Put logs without category at the bottom
                     if (!a.category && !b.category) return 0;
                     if (!a.category) return 1;
                     if (!b.category) return -1;
@@ -69,7 +66,6 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
                     bValue = b.category.toLowerCase();
                     break;
                 case 'rating':
-                    // Put logs without rating at the bottom
                     if (a.rating === undefined && b.rating === undefined) return 0;
                     if (a.rating === undefined) return 1;
                     if (b.rating === undefined) return -1;
@@ -83,7 +79,6 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
                     break;
             }
 
-            // Compare values
             if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
             if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
             return 0;
