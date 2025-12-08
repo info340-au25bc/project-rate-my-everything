@@ -22,6 +22,9 @@ export function AddToListModal({ logData, onClose, onAddToList }) {
             
             const userLists = listsArray.filter(list => list.userId === auth.currentUser?.uid);
             setLists(userLists);
+        }, (error) => {
+            console.error('Error reading lists:', error);
+            setLists([]);
         });
 
         return () => unsubscribe();

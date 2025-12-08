@@ -51,6 +51,8 @@ function App() {
         const auth = getAuth();
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+        }, (error) => {
+            console.error('Auth state change error:', error);
         });
 
         return () => unsubscribe();
@@ -87,10 +89,15 @@ function App() {
             createdAt: Date.now()
         };
         
-        const db = getDatabase();
-        const allLogsRef = ref(db, "allLogs");
-        await push(allLogsRef, newLog);
-        setIsAddLogModalOpen(false);
+        try {
+            const db = getDatabase();
+            const allLogsRef = ref(db, "allLogs");
+            await push(allLogsRef, newLog);
+            setIsAddLogModalOpen(false);
+        } catch (error) {
+            console.error('Error adding log:', error);
+            alert('Failed to add log. Please try again.');
+        }
     }
 
     const addList = async (listName, listImg, listDesc) => {
@@ -112,10 +119,15 @@ function App() {
             createdAt: Date.now()
         }
 
-        const db = getDatabase();
-        const allListsRef = ref(db, "allLists");
-        await push(allListsRef, newList);
-        setIsAddListModalOpen(false);
+        try {
+            const db = getDatabase();
+            const allListsRef = ref(db, "allLists");
+            await push(allListsRef, newList);
+            setIsAddListModalOpen(false);
+        } catch (error) {
+            console.error('Error adding list:', error);
+            alert('Failed to create list. Please try again.');
+        }
     }
 
     const addLogToList = async (listId, logId) => {
@@ -127,6 +139,7 @@ function App() {
             const listData = listSnapshot.val();
             
             if (!listData) {
+                alert('List not found. Please try again.');
                 return;
             }
             
@@ -140,6 +153,7 @@ function App() {
             closeAddToListModal();
         } catch (error) {
             console.error('Error adding log to list:', error);
+            alert('Failed to add log to list. Please try again.');
         }
     }
 

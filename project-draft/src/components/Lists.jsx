@@ -21,6 +21,9 @@ export function Lists({ onOpenAddListModal }) {
             const userLists = listsArray.filter(list => list.userId === auth.currentUser?.uid).reverse();
             
             setLists(userLists);
+        }, (error) => {
+            console.error('Error reading lists:', error);
+            setLists([]);
         });
 
         return () => {

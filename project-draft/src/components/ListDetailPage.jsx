@@ -30,6 +30,7 @@ export function ListDetailPage({ onOpenDescriptionModal }) {
             });
         } catch (error) {
             console.error('Error removing log from list:', error);
+            alert('Failed to remove log from list. Please try again.');
         }
     };
 
@@ -44,25 +45,39 @@ export function ListDetailPage({ onOpenDescriptionModal }) {
                 return;
             }
 
-            const data = snapshot.val();
-            setListData({ id: listId, ...data });
+            try {
+                const data = snapshot.val();
+                setListData({ id: listId, ...data });
 
-            if (data.logs && data.logs.length > 0) {
-                const logPromises = data.logs.map(async (logId) => {
-                    const logRef = ref(db, `allLogs/${logId}`);
-                    const logSnapshot = await get(logRef);
-                    if (logSnapshot.exists()) {
-                        return { id: logId, ...logSnapshot.val() };
-                    }
-                    return null;
-                });
+                if (data.logs && data.logs.length > 0) {
+                    const logPromises = data.logs.map(async (logId) => {
+                        try {
+                            const logRef = ref(db, `allLogs/${logId}`);
+                            const logSnapshot = await get(logRef);
+                            if (logSnapshot.exists()) {
+                                return { id: logId, ...logSnapshot.val() };
+                            }
+                            return null;
+                        } catch (error) {
+                            console.error(`Error fetching log ${logId}:`, error);
+                            return null;
+                        }
+                    });
 
-                const logResults = await Promise.all(logPromises);
-                const validLogs = logResults.filter(log => log !== null);
-                setLogs(validLogs);
-            } else {
+                    const logResults = await Promise.all(logPromises);
+                    const validLogs = logResults.filter(log => log !== null);
+                    setLogs(validLogs);
+                } else {
+                    setLogs([]);
+                }
+            } catch (error) {
+                console.error('Error processing list data:', error);
                 setLogs([]);
             }
+        }, (error) => {
+            console.error('Error reading list:', error);
+            setListData(null);
+            setLogs([]);
         });
 
         return () => unsubscribe();

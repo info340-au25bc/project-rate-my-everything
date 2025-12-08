@@ -26,6 +26,9 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
             const userLogs = logsArray.filter(log => log.userId === auth.currentUser?.uid).reverse();
             
             setLogs(userLogs);
+        }, (error) => {
+            console.error('Error reading logs:', error);
+            setLogs([]);
         });
 
         return () => {
