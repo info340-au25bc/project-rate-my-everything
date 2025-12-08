@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 
 export function AddNewLog(props) {
     const { addLog } = props;
@@ -30,7 +30,7 @@ export function AddNewLog(props) {
         
         reader.onload = () => {
             const dataUrl = reader.result;
-            setImg(dataUrl); // Store the data URL in state
+            setImg(dataUrl);
         };
 
         reader.readAsDataURL(file);

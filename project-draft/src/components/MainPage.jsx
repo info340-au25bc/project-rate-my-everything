@@ -1,7 +1,7 @@
 import React from 'react';
 import { RecCards } from './RecCards';
 
-export function MainPage({ onOpenDescriptionModal }) {
+export function MainPage({ onOpenDescriptionModal, onOpenAddToListModal }) {
     return (
         <main>
             <div className="header-container">
@@ -24,7 +24,7 @@ export function MainPage({ onOpenDescriptionModal }) {
                 </p>
             </div>
 
-            <RecCards onOpenDescriptionModal={onOpenDescriptionModal} />
+            <RecCards onOpenDescriptionModal={onOpenDescriptionModal} onOpenAddToListModal={onOpenAddToListModal} />
         </main>
     )
 }

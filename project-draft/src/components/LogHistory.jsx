@@ -4,16 +4,13 @@ import { SearchBar } from './SearchBar';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 
-export function LogHistory({ onOpenDescriptionModal }) {
+export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
     const [logs, setLogs] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const db = getDatabase();
         const allLogsRef = ref(db, 'allLogs');
-
-        setIsLoading(true);
         
         const unsubscribe = onValue(allLogsRef, (snapshot) => {
             const data = snapshot.val();
@@ -25,9 +22,7 @@ export function LogHistory({ onOpenDescriptionModal }) {
             const auth = getAuth();
             const userLogs = logsArray.filter(log => log.userId === auth.currentUser?.uid).reverse();
             
-
             setLogs(userLogs);
-            setIsLoading(false);
         });
 
         return () => {
@@ -59,6 +54,7 @@ export function LogHistory({ onOpenDescriptionModal }) {
             key={log.id} 
             logData={log} 
             onOpenDescriptionModal={onOpenDescriptionModal}
+            onOpenAddToListModal={onOpenAddToListModal}
             showAddToList={true}
             showActions={true}
         />
@@ -73,9 +69,7 @@ export function LogHistory({ onOpenDescriptionModal }) {
                         <SearchBar onSearch={handleSearch} />
                     </div>
                 </div>
-                {isLoading ? (
-                    <p className="no-results">Loading logs...</p>
-                ) : logCards.length > 0 ? (
+                {logCards.length > 0 ? (
                     <div className="row g-4">
                         {logCards}
                     </div>

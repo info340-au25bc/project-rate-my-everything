@@ -3,9 +3,8 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 import { LogCard } from './LogCard';
 
-export function RecCards({ onOpenDescriptionModal }) {
+export function RecCards({ onOpenDescriptionModal, onOpenAddToListModal }) {
     const [logs, setLogs] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const db = getDatabase();
@@ -29,11 +28,9 @@ export function RecCards({ onOpenDescriptionModal }) {
             const newestNine = logsArray.slice(0, 9);
             
             setLogs(newestNine);
-            setIsLoading(false);
         }, (error) => {
             console.error('Error reading logs:', error);
             setLogs([]);
-            setIsLoading(false);
         });
 
         return () => unsubscribe();
@@ -44,7 +41,8 @@ export function RecCards({ onOpenDescriptionModal }) {
             key={log.id} 
             logData={log}
             showActions={false}
-            onOpenDescriptionModal={onOpenDescriptionModal} 
+            onOpenDescriptionModal={onOpenDescriptionModal}
+            onOpenAddToListModal={onOpenAddToListModal}
         />
     ));
 
@@ -52,9 +50,7 @@ export function RecCards({ onOpenDescriptionModal }) {
         <div className="rec-log container py-5"> 
             <h2 className="log-title">Daily Recommended Logs</h2>
             <div className="row g-4">
-                {isLoading ? (
-                    <p>Loading recommendations...</p>
-                ) : recCards.length > 0 ? (
+                {recCards.length > 0 ? (
                     recCards
                 ) : (
                     <p>No recommendations available yet.</p>

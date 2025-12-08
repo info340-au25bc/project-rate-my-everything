@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 
 export function AddNewList(props) {
     const { addList } = props;
@@ -19,7 +19,7 @@ export function AddNewList(props) {
         
         reader.onload = () => {
             const dataUrl = reader.result;
-            setListImg(dataUrl); // Store the data URL in state
+            setListImg(dataUrl);
         };
 
         reader.readAsDataURL(file);

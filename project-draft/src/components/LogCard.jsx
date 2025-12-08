@@ -3,7 +3,7 @@ import { RatingDisplay } from './RatingDisplay';
 import { getDatabase, ref, remove } from 'firebase/database';
 import DropdownButton from './DropdownButton';
 
-export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true, showActions = false }) {
+export function LogCard({ logData, onOpenDescriptionModal, onOpenAddToListModal, onRemoveFromList, showAddToList = true, showActions = false, showRemoveFromList = false }) {
     const handleDescriptionClick = () => {
         if (onOpenDescriptionModal) {
             onOpenDescriptionModal(logData);
@@ -26,6 +26,11 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
         }
     };
 
+    const handleRemoveFromList = async () => {
+        if (!logData.id || !onRemoveFromList) return;
+        onRemoveFromList(logData.id);
+    };
+
     const formatDate = (dateString) => {
         if (!dateString) return '';
         const date = new Date(dateString);
@@ -36,15 +41,26 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
     return (
         <div className="col-12 col-md-6 col-lg-4">
             <div className="horizontal-card">
-                {showActions && (
+                {(showActions || showRemoveFromList) && (
                     <div className="card-actions">
-                        <button 
-                            className="card-action-btn delete-btn" 
-                            onClick={handleDelete}
-                            title="Delete log"
-                        >
-                            <i className="bi bi-trash"></i>
-                        </button>
+                        {showActions && (
+                            <button 
+                                className="card-action-btn delete-btn" 
+                                onClick={handleDelete}
+                                title="Delete log"
+                            >
+                                <i className="bi bi-trash"></i>
+                            </button>
+                        )}
+                        {showRemoveFromList && (
+                            <button 
+                                className="card-action-btn remove-from-list-action-btn" 
+                                onClick={handleRemoveFromList}
+                                title="Remove from list"
+                            >
+                                <i className="bi bi-x-circle"></i>
+                            </button>
+                        )}
                     </div>
                 )}
                 {logData.img && <img className="card-img-left" src={logData.img} alt="image failed to load" />}
@@ -67,6 +83,9 @@ export function LogCard({ logData, onOpenDescriptionModal, showAddToList = true,
                                     {
                                         label: 'Add to List',
                                         onClick: () => {
+                                            if (onOpenAddToListModal) {
+                                                onOpenAddToListModal(logData);
+                                            }
                                         }
                                     }
                                 ]}

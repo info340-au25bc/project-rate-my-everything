@@ -912,3 +912,82 @@ header .navbutton:hover {
         max-width: 200px;
     }
 }
+
+.add-to-list-modal {
+    padding: 1rem;
+}
+
+.add-to-list-modal h2 {
+    margin-bottom: 1.5rem;
+    color: #373133;
+}
+
+.list-dropdown-container {
+    margin-bottom: 1.5rem;
+}
+
+.close-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #8C5B5E;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+    background-color: #6d4548;
+}
+
+.list-detail-main {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+}
+
+.list-detail-header {
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #8C5B5E;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    transition: color 0.2s ease;
+}
+
+.back-btn:hover {
+    color: #6d4548;
+    text-decoration: underline;
+}
+
+.list-detail-header h1 {
+    margin-bottom: 0.5rem;
+    color: #373133;
+}
+
+.list-description {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.remove-from-list-action-btn {
+    color: #ff6b6b;
+    margin: 0.5rem;
+}
+
+.remove-from-list-action-btn:hover {
+    background-color: #ff6b6b;
+    color: white;
+    border-color: #ff6b6b;
+}
+
+.view-list-btn {
+    margin-top: 1rem;
+}
