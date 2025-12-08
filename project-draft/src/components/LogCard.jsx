@@ -57,6 +57,7 @@ export function LogCard({ logData, onOpenDescriptionModal, onOpenAddToListModal,
                             <button 
                                 className="card-action-btn delete-btn" 
                                 onClick={handleDelete}
+                                aria-label={`Delete ${logData.name}`}
                                 title="Delete log"
                             >
                                 <i className="bi bi-trash"></i>

@@ -54,7 +54,7 @@ export function AddNewList(props) {
                         <textarea id="description" name="description" placeholder="Description (optional)..." rows="4" cols="40" onChange={handleDescChange}></textarea>
                     </div>
                     <div className="field">
-                        <input className="button" type="submit" value="Create List" />
+                    <label htmlFor="description"></label><input className="button" type="submit" value="Create List" />
                     </div>
                 </form>
             </section>

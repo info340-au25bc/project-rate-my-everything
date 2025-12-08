@@ -108,7 +108,7 @@ export function ListDetailPage({ onOpenDescriptionModal }) {
                     </button>
                     <h1>{listData.name}</h1>
                     {listData.description && (
-                        <p className="list-description">{listData.description}</p>
+                        <p className="list-description"><strong>Description: </strong>{listData.description}</p>
                     )}
                 </div>
 

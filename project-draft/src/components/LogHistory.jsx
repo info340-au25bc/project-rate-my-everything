@@ -110,7 +110,7 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
                         <SearchBar onSearch={handleSearch} />
                     </div>
                     <div className="sort-controls">
-                        <label>Sort by:</label>
+                        <label htmlFor="sort-dropdown">Sort by:</label>
                         <Dropdown>
                             <Dropdown.Toggle variant="light" className="sort-select">
                                 {sortBy === 'date' && 'Date'}
@@ -128,6 +128,7 @@ export function LogHistory({ onOpenDescriptionModal, onOpenAddToListModal }) {
                         <button 
                             onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
                             className="sort-order-btn"
+                            aria-label={`Sort order: ${sortOrder === 'asc' ? 'Ascending' : 'Descending'}`}
                             title={sortOrder === 'asc' ? 'Ascending' : 'Descending'}
                         >
                             {sortOrder === 'asc' ? '↑' : '↓'}

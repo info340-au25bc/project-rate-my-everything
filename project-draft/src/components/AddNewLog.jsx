@@ -75,7 +75,7 @@ export function AddNewLog(props) {
                     <textarea id="review" name="review" placeholder="Add your review..." rows="4" cols="40" value={review} onChange={handleReviewChange}></textarea>
                 </div>
                 <div className="field">
-                    <input className="button" type="submit" value="Add log" />
+                <label htmlFor="review"></label><input className="button" type="submit" value="Add log" />
                 </div>
             </form>
         </div>
